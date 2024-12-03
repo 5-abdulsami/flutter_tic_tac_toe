@@ -12,11 +12,7 @@ class CustomTextfield extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         boxShadow: [
-          BoxShadow(
-            color: Colors.blue,
-            blurRadius: 5,
-            spreadRadius: 2
-          ),
+          BoxShadow(color: Colors.blue, blurRadius: 5, spreadRadius: 2),
         ],
       ),
       child: TextField(

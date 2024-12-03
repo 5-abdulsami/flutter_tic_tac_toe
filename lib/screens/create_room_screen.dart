@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tic_tac_toe/responsive/responsive.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_button.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_text.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_textfield.dart';
@@ -23,25 +24,27 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const CustomText(shadows: [
-              Shadow(blurRadius: 40, color: Colors.blue),
-            ], text: "Create Room", fontSize: 70),
-            SizedBox(
-              height: height * 0.1,
-            ),
-            CustomTextfield(
-                hintText: "Enter your nickname", controller: _nameController),
-            SizedBox(
-              height: height * 0.06,
-            ),
-            CustomButton(text: "Create", onPressed: () {}),
-          ],
+      body: Responsive(
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const CustomText(shadows: [
+                Shadow(blurRadius: 40, color: Colors.blue),
+              ], text: "Create Room", fontSize: 70),
+              SizedBox(
+                height: height * 0.1,
+              ),
+              CustomTextfield(
+                  hintText: "Enter your nickname", controller: _nameController),
+              SizedBox(
+                height: height * 0.08,
+              ),
+              CustomButton(text: "Create", onPressed: () {}),
+            ],
+          ),
         ),
       ),
     );
