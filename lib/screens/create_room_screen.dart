@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tic_tac_toe/resources/socket_methods.dart';
 import 'package:flutter_tic_tac_toe/responsive/responsive.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_button.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_text.dart';
@@ -12,6 +13,7 @@ class CreateRoomScreen extends StatefulWidget {
 }
 
 class _CreateRoomScreenState extends State<CreateRoomScreen> {
+  SocketMethods socketMethods = SocketMethods();
   final _nameController = TextEditingController();
 
   @override
@@ -42,7 +44,11 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
               SizedBox(
                 height: height * 0.08,
               ),
-              CustomButton(text: "Create", onPressed: () {}),
+              CustomButton(
+                  text: "Create",
+                  onPressed: () {
+                    socketMethods.createRoom(_nameController.text);
+                  }),
             ],
           ),
         ),
