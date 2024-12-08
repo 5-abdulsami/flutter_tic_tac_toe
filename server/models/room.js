@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { type } = require("server/reply");
 const playerSchema = require("./player");
 
 const roomSchema = new mongoose.Schema({

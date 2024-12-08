@@ -19,7 +19,7 @@ class MainMenuScreen extends StatelessWidget {
       ),
       body: Responsive(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
