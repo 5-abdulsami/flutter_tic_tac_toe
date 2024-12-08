@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tic_tac_toe/provider/room_data_provider.dart';
+import 'package:provider/provider.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
@@ -10,6 +12,9 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+        body: Center(
+      child: Text(Provider.of<RoomDataProvider>(context).roomData.toString()),
+    ));
   }
 }
