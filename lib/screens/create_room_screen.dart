@@ -29,27 +29,30 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
       body: Responsive(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const CustomText(shadows: [
-                Shadow(blurRadius: 40, color: Colors.blue),
-              ], text: "Create Room", fontSize: 70),
-              SizedBox(
-                height: height * 0.1,
-              ),
-              CustomTextfield(
-                  hintText: "Enter your nickname", controller: _nameController),
-              SizedBox(
-                height: height * 0.08,
-              ),
-              CustomButton(
-                  text: "Create",
-                  onPressed: () {
-                    socketMethods.createRoom(_nameController.text);
-                  }),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CustomText(shadows: [
+                  Shadow(blurRadius: 40, color: Colors.blue),
+                ], text: "Create Room", fontSize: 70),
+                SizedBox(
+                  height: height * 0.1,
+                ),
+                CustomTextfield(
+                    hintText: "Enter your nickname",
+                    controller: _nameController),
+                SizedBox(
+                  height: height * 0.08,
+                ),
+                CustomButton(
+                    text: "Create",
+                    onPressed: () {
+                      socketMethods.createRoom(_nameController.text);
+                    }),
+              ],
+            ),
           ),
         ),
       ),

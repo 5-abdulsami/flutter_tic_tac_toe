@@ -6,6 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 var server = http.createServer(app);
+const Room = require("./models/room");
 
 var io = require("socket.io")(server);
 
@@ -16,8 +17,36 @@ const DB = "mongodb+srv://abdulsami3804:test123@cluster1.ttdfu.mongodb.net/?retr
 
 io.on("connection", (socket) => {
     console.log("connected");
-    socket.on("createRoom", ({ nickname }) => {
+    socket.on("createRoom", async ({ nickname }) => {
         console.log(nickname);
+        // room is created
+        try {
+            let room = new Room();
+            let player = {
+                socketID: socket.id,
+                nickname: nickname,
+                playerType: "X",
+            };
+
+            // player is stored in the room
+            room.players.push(player);
+            room.turn = player;
+            room = await room.save();
+
+            // we get this room._id after saving room in mongodb
+            const roomId = room._id.toString();
+
+            socket.join(roomId);
+            // then tell our client that room has been created
+            // go to the next page
+
+            // io -> send data to everyone
+            // socket => send data to yourself  
+            io.to(roomId).emit('createRoomSuccess', room);
+        } catch (e) {
+            console.log(e);
+        }
+
     });
 });
 
