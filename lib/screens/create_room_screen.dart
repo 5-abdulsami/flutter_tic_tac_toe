@@ -6,6 +6,7 @@ import 'package:flutter_tic_tac_toe/widgets/custom_text.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_textfield.dart';
 
 class CreateRoomScreen extends StatefulWidget {
+  static String routeName = "/create-room";
   const CreateRoomScreen({super.key});
 
   @override

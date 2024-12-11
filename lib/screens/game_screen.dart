@@ -3,6 +3,7 @@ import 'package:flutter_tic_tac_toe/provider/room_data_provider.dart';
 import 'package:provider/provider.dart';
 
 class GameScreen extends StatefulWidget {
+  static String routeName = '/game-screen';
   const GameScreen({super.key});
 
   @override

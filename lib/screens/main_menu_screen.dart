@@ -6,6 +6,7 @@ import 'package:flutter_tic_tac_toe/utils/colors.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_button.dart';
 
 class MainMenuScreen extends StatelessWidget {
+  static String routeName = "/main-menu";
   const MainMenuScreen({super.key});
 
   @override
@@ -26,10 +27,7 @@ class MainMenuScreen extends StatelessWidget {
               CustomButton(
                   text: "Create Room",
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CreateRoomScreen()));
+                    Navigator.pushNamed(context, CreateRoomScreen.routeName);
                   }),
               SizedBox(
                 height: height * 0.05,
@@ -37,10 +35,7 @@ class MainMenuScreen extends StatelessWidget {
               CustomButton(
                   text: "Join Room",
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const JoinRoomScreen()));
+                    Navigator.pushNamed(context, JoinRoomScreen.routeName);
                   }),
             ],
           ),
