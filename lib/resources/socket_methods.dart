@@ -46,8 +46,17 @@ class SocketMethods {
   }
 
   void errorOccuredListener(BuildContext context) {
-    _socketClient.on("error", (message) {
+    _socketClient.on("errorOccurred", (message) {
       showSnackBar(context, message);
+    });
+  }
+
+  void updatePlayerStateListener(BuildContext context) {
+    _socketClient.on("updatePlayers", (playerData) {
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updatePlayer1(playerData[0]);
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updatePlayer2(playerData[1]);
     });
   }
 }
