@@ -28,7 +28,6 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _nameController.dispose();
     _gameidController.dispose();
@@ -52,12 +51,16 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
                 height: height * 0.1,
               ),
               CustomTextfield(
-                  hintText: "Enter your nickname", controller: _nameController),
+                hintText: "Enter your nickname",
+                controller: _nameController,
+              ),
               SizedBox(
                 height: height * 0.03,
               ),
               CustomTextfield(
-                  hintText: "Enter Game ID", controller: _gameidController),
+                hintText: "Enter Game ID",
+                controller: _gameidController,
+              ),
               SizedBox(
                 height: height * 0.08,
               ),

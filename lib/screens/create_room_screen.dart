@@ -48,8 +48,9 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                   height: height * 0.1,
                 ),
                 CustomTextfield(
-                    hintText: "Enter your nickname",
-                    controller: _nameController),
+                  hintText: "Enter your nickname",
+                  controller: _nameController,
+                ),
                 SizedBox(
                   height: height * 0.08,
                 ),

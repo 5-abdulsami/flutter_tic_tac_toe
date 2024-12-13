@@ -3,7 +3,7 @@ import 'dart:convert';
 class Player {
   final String nickname;
   final String socketID;
-  final double points;
+  final int points;
   final String playerType;
 
   Player(
@@ -25,15 +25,12 @@ class Player {
     return Player(
         nickname: map["nickname"] ?? '',
         socketID: map["socketID"] ?? '',
-        points: map["points"] ?? 0.0,
+        points: map["points"] ?? 0,
         playerType: map["playerType"] ?? '');
   }
 
   Player copyWith(
-      {String? nickname,
-      String? socketID,
-      double? points,
-      String? playerType}) {
+      {String? nickname, String? socketID, int? points, String? playerType}) {
     return Player(
         nickname: nickname ?? this.nickname,
         socketID: socketID ?? this.socketID,
