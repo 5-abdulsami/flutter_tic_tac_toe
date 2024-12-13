@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/provider/room_data_provider.dart';
 import 'package:flutter_tic_tac_toe/resources/socket_methods.dart';
 import 'package:flutter_tic_tac_toe/screens/waiting_lobby.dart';
+import 'package:flutter_tic_tac_toe/widgets/scoreboard.dart';
+import 'package:flutter_tic_tac_toe/widgets/tic_tac_toe_board.dart';
 import 'package:provider/provider.dart';
 
 class GameScreen extends StatefulWidget {
@@ -29,9 +31,13 @@ class _GameScreenState extends State<GameScreen> {
     return Scaffold(
         body: roomDataProvider.roomData['isJoin']
             ? WaitingLobby()
-            : Center(
-                child: Text(
-                    Provider.of<RoomDataProvider>(context).roomData.toString()),
-              ));
+            : SafeArea(
+                child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Scoreboard(),
+                  TicTacToeBoard(),
+                ],
+              )));
   }
 }
