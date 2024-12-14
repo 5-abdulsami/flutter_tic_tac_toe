@@ -4,9 +4,12 @@ import 'package:flutter_tic_tac_toe/resources/socket_client.dart';
 import 'package:flutter_tic_tac_toe/screens/game_screen.dart';
 import 'package:flutter_tic_tac_toe/utils/utils.dart';
 import 'package:provider/provider.dart';
+import 'package:socket_io_client/socket_io_client.dart';
 
 class SocketMethods {
   final _socketClient = SocketClient.instance.socket!;
+
+  Socket get socketClient => _socketClient;
 
   // EMITS
   void createRoom(String nickname) {
@@ -19,6 +22,12 @@ class SocketMethods {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
       _socketClient.emit("joinRoom", {'nickname': nickname, 'roomId': roomId});
     }
+  }
+
+  void tapGrid(int index, String roomId, List<String> displayElements) {
+    // display elements : to track all the filled and empty proportions of the grid
+    if (displayElements[index] == '') {}
+    _socketClient.emit("tap", {'index': index, 'roomId': roomId});
   }
 
   // LISTENERES
@@ -64,6 +73,17 @@ class SocketMethods {
     _socketClient.on("updateRoom", (data) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(data);
+    });
+  }
+
+  void tappedListener(BuildContext context) {
+    _socketClient.on("tapped", (data) {
+      RoomDataProvider roomDataProvider =
+          Provider.of<RoomDataProvider>(context, listen: false);
+      roomDataProvider.updateDisplayElements(data['index'], data['choice']);
+      roomDataProvider.updateRoomData(data['room']);
+
+      // check for winner
     });
   }
 }
