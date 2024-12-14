@@ -92,7 +92,7 @@ io.on("connection", (socket) => {
     socket.on("tap", async ({ index, roomId }) => {
         try {
             // found the room by id
-            let room = await Romm.findById(roomId);
+            let room = await Room.findById(roomId);
 
             // storing choice and updating the users about the choice
             let choice = room.turn.playerType;
@@ -108,7 +108,25 @@ io.on("connection", (socket) => {
             room = await room.save();
             io.to(roomId).emit("tapped", { index, choice, room });
         } catch (e) {
+            console.log(e);
+        }
+    });
 
+    socket.on("winner", async ({ winnerSocketId, roomId }) => {
+        try {
+            let room = await Room.findById(roomId);
+            let player = room.players.find((player) => player.socketID === winnerSocketId);
+            player.points += 1;
+            room = await room.save();
+
+            if (player.points >= room.maxRounds) {
+                io.to(roomId).emit("endGame", player);
+            } else {
+                io.to(roomId).emit("pointIncrease", player);
+            }
+            io.to(roomId).emit("updateRoom", room);
+        } catch (e) {
+            console.log(e);
         }
     });
 });

@@ -3,11 +3,12 @@ import 'package:flutter_tic_tac_toe/models/player.dart';
 
 class RoomDataProvider extends ChangeNotifier {
   Map<String, dynamic> _roomData = {};
-  List<String> _displayElements = ['', '', '', '', '', '', '', '', ''];
+  final List<String> _displayElements = ['', '', '', '', '', '', '', '', ''];
   int _filledBoxes = 0;
 
   Map<String, dynamic> get roomData => _roomData;
   List<String> get displayElements => _displayElements;
+  int get filledBoxes => _filledBoxes;
 
   Player _player1 =
       Player(nickname: "", socketID: "", points: 0, playerType: "X");
@@ -35,6 +36,11 @@ class RoomDataProvider extends ChangeNotifier {
   void updateDisplayElements(int index, String choice) {
     _displayElements[index] = choice;
     _filledBoxes += 1;
+    notifyListeners();
+  }
+
+  void setFilledBoxesTo0() {
+    _filledBoxes = 0;
     notifyListeners();
   }
 }

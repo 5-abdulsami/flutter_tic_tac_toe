@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/provider/room_data_provider.dart';
+import 'package:flutter_tic_tac_toe/resources/game_methods.dart';
 import 'package:flutter_tic_tac_toe/resources/socket_client.dart';
 import 'package:flutter_tic_tac_toe/screens/game_screen.dart';
 import 'package:flutter_tic_tac_toe/utils/utils.dart';
@@ -26,8 +27,9 @@ class SocketMethods {
 
   void tapGrid(int index, String roomId, List<String> displayElements) {
     // display elements : to track all the filled and empty proportions of the grid
-    if (displayElements[index] == '') {}
-    _socketClient.emit("tap", {'index': index, 'roomId': roomId});
+    if (displayElements[index] == '') {
+      _socketClient.emit("tap", {'index': index, 'roomId': roomId});
+    }
   }
 
   // LISTENERES
@@ -84,6 +86,26 @@ class SocketMethods {
       roomDataProvider.updateRoomData(data['room']);
 
       // check for winner
+      GameMethods().checkWinner(context, _socketClient);
+    });
+  }
+
+  void pointIncreaseListener(BuildContext context) {
+    _socketClient.on("pointIncrease", (playerData) {
+      var roomDataProvider =
+          Provider.of<RoomDataProvider>(context, listen: false);
+      if (playerData['socketID'] == roomDataProvider.player1.socketID) {
+        roomDataProvider.updatePlayer1(playerData);
+      } else {
+        roomDataProvider.updatePlayer2(playerData);
+      }
+    });
+  }
+
+  void endGameListener(BuildContext context) {
+    _socketClient.on("endGame", (playerData) {
+      showGameDialogBox(context, "${playerData['nickname']} won the game!");
+      Navigator.popUntil(context, (route) => false);
     });
   }
 }

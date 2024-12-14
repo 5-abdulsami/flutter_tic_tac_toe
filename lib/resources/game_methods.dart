@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/provider/room_data_provider.dart';
+import 'package:flutter_tic_tac_toe/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 
@@ -58,6 +59,41 @@ class GameMethods {
             roomDataProvider.displayElements[6] &&
         roomDataProvider.displayElements[2] != '') {
       winner = roomDataProvider.displayElements[2]; // / diagonal winner
+    } else if (roomDataProvider.filledBoxes == 9) {
+      winner = '';
+      // display game dialogue box saying draw
+      showGameDialogBox(context, 'Draw');
     }
+
+    if (winner != '') {
+      if (roomDataProvider.player1.playerType == winner) {
+        // display game dialogue box of player 1 win
+        showGameDialogBox(
+            context, "${roomDataProvider.player1.nickname} Wins!");
+
+        socketClient.emit("winner", {
+          'winnerSocketId': roomDataProvider.player1.socketID,
+          'roomId': roomDataProvider.roomData['_id'],
+        });
+      } else {
+        // display game dialogue box of player 2 win
+        showGameDialogBox(
+            context, "${roomDataProvider.player1.nickname} Wins!");
+
+        socketClient.emit("winner", {
+          'winnerSocketId': roomDataProvider.player2.socketID,
+          'roomId': roomDataProvider.roomData['_id'],
+        });
+      }
+    }
+  }
+
+  void clearBoard(BuildContext context) {
+    RoomDataProvider roomDataProvider =
+        Provider.of<RoomDataProvider>(context, listen: false);
+    for (int i = 0; i < roomDataProvider.displayElements.length; i++) {
+      roomDataProvider.updateDisplayElements(i, '');
+    }
+    roomDataProvider.setFilledBoxesTo0();
   }
 }
