@@ -14,17 +14,26 @@ class CustomTextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        boxShadow: [
-          BoxShadow(color: Colors.blue, blurRadius: 5, spreadRadius: 2),
-        ],
-      ),
-      child: TextField(
-        readOnly: isReadOnly,
-        controller: controller,
-        decoration: InputDecoration(
-            hintText: hintText, filled: true, fillColor: bgColor),
-      ),
-    );
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(color: blueColor, blurRadius: 5, spreadRadius: 2),
+          ],
+        ),
+        child: TextField(
+          readOnly: isReadOnly,
+          controller: controller,
+          decoration: InputDecoration(
+            hintText: hintText,
+            filled: true,
+            fillColor: bgColor,
+            border: InputBorder.none,
+            enabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+          ),
+        ));
   }
 }

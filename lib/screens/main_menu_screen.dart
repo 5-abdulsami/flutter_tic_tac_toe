@@ -4,6 +4,7 @@ import 'package:flutter_tic_tac_toe/screens/create_room_screen.dart';
 import 'package:flutter_tic_tac_toe/screens/join_room_screen.dart';
 import 'package:flutter_tic_tac_toe/utils/colors.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_button.dart';
+import 'package:flutter_tic_tac_toe/widgets/custom_text.dart';
 
 class MainMenuScreen extends StatelessWidget {
   static String routeName = "/main-menu";
@@ -24,6 +25,17 @@ class MainMenuScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const CustomText(
+                shadows: [
+                  Shadow(blurRadius: 40, color: blueColor),
+                ],
+                text: "Multi Player Tic Tac Toe",
+                fontSize: 50,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: height * 0.1,
+              ),
               CustomButton(
                   text: "Create Room",
                   onPressed: () {
