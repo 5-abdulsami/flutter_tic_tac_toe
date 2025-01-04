@@ -15,7 +15,7 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  SocketMethods _socketMethods = SocketMethods();
+  final SocketMethods _socketMethods = SocketMethods();
 
   @override
   void initState() {
@@ -32,13 +32,13 @@ class _GameScreenState extends State<GameScreen> {
     print(Provider.of<RoomDataProvider>(context).player2.nickname);
     return Scaffold(
         body: roomDataProvider.roomData['isJoin']
-            ? WaitingLobby()
+            ? const WaitingLobby()
             : SafeArea(
                 child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Scoreboard(),
-                  TicTacToeBoard(),
+                  const Scoreboard(),
+                  const TicTacToeBoard(),
                   Text(
                       "${roomDataProvider.roomData['turn']['nickname']}'s turn"),
                 ],

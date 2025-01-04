@@ -15,7 +15,6 @@ class _WaitingLobbyState extends State<WaitingLobby> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     roomIdController = TextEditingController(
       text:
@@ -25,19 +24,20 @@ class _WaitingLobbyState extends State<WaitingLobby> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     roomIdController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text("Waiting for other players..."),
           SizedBox(
-            height: 20,
+            height: height * 0.08,
           ),
           CustomTextfield(
             hintText: "",

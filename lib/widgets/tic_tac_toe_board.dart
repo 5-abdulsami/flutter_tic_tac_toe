@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/provider/room_data_provider.dart';
 import 'package:flutter_tic_tac_toe/resources/socket_methods.dart';
+import 'package:flutter_tic_tac_toe/utils/colors.dart';
 import 'package:provider/provider.dart';
 
 class TicTacToeBoard extends StatefulWidget {
@@ -43,7 +44,7 @@ class _TicTacToeBoardState extends State<TicTacToeBoard> {
                 onTap: () => tapped(index, roomDataProvider),
                 child: Container(
                     decoration:
-                        BoxDecoration(border: Border.all(color: Colors.grey)),
+                        BoxDecoration(border: Border.all(color: greyColor)),
                     child: Center(
                       child: AnimatedSize(
                         duration: const Duration(milliseconds: 200),
@@ -56,8 +57,8 @@ class _TicTacToeBoardState extends State<TicTacToeBoard> {
                                     color: roomDataProvider
                                                 .displayElements[index] ==
                                             'O'
-                                        ? Colors.red
-                                        : Colors.blue,
+                                        ? redColor
+                                        : blueColor,
                                     blurRadius: 40,
                                     offset: const Offset(0, 2),
                                   ),

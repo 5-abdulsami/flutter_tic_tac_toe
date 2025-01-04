@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/resources/socket_methods.dart';
 import 'package:flutter_tic_tac_toe/responsive/responsive.dart';
+import 'package:flutter_tic_tac_toe/utils/colors.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_button.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_text.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_textfield.dart';
@@ -45,7 +46,7 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const CustomText(shadows: [
-                Shadow(blurRadius: 40, color: Colors.blue),
+                Shadow(blurRadius: 40, color: blueColor),
               ], text: "Join Room", fontSize: 70),
               SizedBox(
                 height: height * 0.1,
