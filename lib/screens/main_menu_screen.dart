@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tic_tac_toe/offline_module/offline_game_screen.dart';
 import 'package:flutter_tic_tac_toe/responsive/responsive.dart';
 import 'package:flutter_tic_tac_toe/screens/create_room_screen.dart';
 import 'package:flutter_tic_tac_toe/screens/join_room_screen.dart';
@@ -48,6 +49,14 @@ class MainMenuScreen extends StatelessWidget {
                   text: "Join Room",
                   onPressed: () {
                     Navigator.pushNamed(context, JoinRoomScreen.routeName);
+                  }),
+              SizedBox(
+                height: height * 0.05,
+              ),
+              CustomButton(
+                  text: "Play 2 Player Offline",
+                  onPressed: () {
+                    Navigator.pushNamed(context, OfflineGameScreen.routeName);
                   }),
             ],
           ),

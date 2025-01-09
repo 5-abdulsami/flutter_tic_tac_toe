@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/provider/room_data_provider.dart';
+import 'package:flutter_tic_tac_toe/utils/colors.dart';
 import 'package:provider/provider.dart';
 
 class Scoreboard extends StatelessWidget {
@@ -19,7 +20,7 @@ class Scoreboard extends StatelessWidget {
             ),
             Text(
               roomDataProvider.player1.points.toString(),
-              style: const TextStyle(fontSize: 20, color: Colors.white),
+              style: const TextStyle(fontSize: 20, color: whiteColor),
             ),
           ]),
         ),
@@ -32,7 +33,7 @@ class Scoreboard extends StatelessWidget {
             ),
             Text(
               roomDataProvider.player2.points.toString(),
-              style: const TextStyle(fontSize: 20, color: Colors.white),
+              style: const TextStyle(fontSize: 20, color: whiteColor),
             ),
           ]),
         ),

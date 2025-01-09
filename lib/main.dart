@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tic_tac_toe/offline_module/offline_game_screen.dart';
+import 'package:flutter_tic_tac_toe/provider/offline_game_provider.dart';
 import 'package:flutter_tic_tac_toe/provider/room_data_provider.dart';
 import 'package:flutter_tic_tac_toe/screens/create_room_screen.dart';
 import 'package:flutter_tic_tac_toe/screens/game_screen.dart';
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => RoomDataProvider()),
+        ChangeNotifierProvider(create: (context) => OfflineGameProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -29,6 +32,7 @@ class MyApp extends StatelessWidget {
           CreateRoomScreen.routeName: (context) => const CreateRoomScreen(),
           JoinRoomScreen.routeName: (context) => const JoinRoomScreen(),
           GameScreen.routeName: (context) => const GameScreen(),
+          OfflineGameScreen.routeName: (context) => const OfflineGameScreen(),
         },
         initialRoute: MainMenuScreen.routeName,
       ),
