@@ -20,7 +20,7 @@ class OfflineTicTacToeBoard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return ConstrainedBox(
-      constraints: BoxConstraints(maxHeight: size.height * 0.7, maxWidth: 500),
+      constraints: BoxConstraints(maxHeight: size.height * 0.55, maxWidth: 500),
       child: GridView.builder(
         itemCount: 9,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

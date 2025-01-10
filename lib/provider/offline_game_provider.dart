@@ -23,7 +23,6 @@ class OfflineGameProvider with ChangeNotifier {
     _winner = '';
     xScore = 0;
     oScore = 0;
-
     notifyListeners();
   }
 
@@ -32,7 +31,6 @@ class OfflineGameProvider with ChangeNotifier {
     _filledBoxes = 0;
     _currentPlayer = 'X';
     _winner = '';
-
     notifyListeners();
   }
 

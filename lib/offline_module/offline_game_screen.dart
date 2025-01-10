@@ -10,39 +10,38 @@ class OfflineGameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Offline Tic-Tac-Toe'),
-      ),
-      body: Column(
-        children: [
-          // Reusable Scoreboard Widget
-          const OfflineScoreboard(),
-          const SizedBox(height: 20),
-          // Offline Tic-Tac-Toe Board
-          Expanded(
-            child: Consumer<OfflineGameProvider>(
-              builder: (context, provider, _) {
-                return OfflineTicTacToeBoard(
-                  currentTurn: provider.currentPlayer,
-                  onMove: (index) {
-                    provider.makeMove(
-                        index, context); // Pass context to makeMove
-                  },
-                );
-              },
-            ),
+    var size = MediaQuery.of(context).size;
+    OfflineGameProvider offlineGameProvider =
+        Provider.of<OfflineGameProvider>(context);
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Reusable Scoreboard Widget
+              const OfflineScoreboard(),
+              // Offline Tic-Tac-Toe Board
+              OfflineTicTacToeBoard(
+                currentTurn: offlineGameProvider.currentPlayer,
+                onMove: (index) {
+                  offlineGameProvider.makeMove(
+                      index, context); // Pass context to makeMove
+                },
+              ),
+              // Status Bar to show who's turn or if there's a winner
+              _StatusBar(),
+              ElevatedButton(
+                onPressed: () {
+                  Provider.of<OfflineGameProvider>(context, listen: false)
+                      .resetGame();
+                },
+                child: const Text('Reset Game'),
+              ),
+            ],
           ),
-          // Status Bar to show who's turn or if there's a winner
-          _StatusBar(),
-          ElevatedButton(
-            onPressed: () {
-              Provider.of<OfflineGameProvider>(context, listen: false)
-                  .resetGame();
-            },
-            child: const Text('Reset Game'),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -51,12 +50,12 @@ class OfflineGameScreen extends StatelessWidget {
 class _StatusBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<OfflineGameProvider>(context);
-    String status = provider.winner.isNotEmpty
-        ? (provider.winner == 'Draw'
+    final offlineGameProvider = Provider.of<OfflineGameProvider>(context);
+    String status = offlineGameProvider.winner.isNotEmpty
+        ? (offlineGameProvider.winner == 'Draw'
             ? 'It\'s a Draw!'
-            : '${provider.winner} Wins!')
-        : 'Current Turn: ${provider.currentPlayer}';
+            : '${offlineGameProvider.winner} Wins!')
+        : 'Current Turn: ${offlineGameProvider.currentPlayer}';
 
     return Padding(
       padding: const EdgeInsets.all(8.0),

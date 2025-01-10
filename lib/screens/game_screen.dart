@@ -28,6 +28,7 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
     print(Provider.of<RoomDataProvider>(context).player2.nickname);
     return Scaffold(
