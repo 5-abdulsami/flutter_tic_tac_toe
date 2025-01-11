@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/offline_module/offline_scorebord.dart';
 import 'package:flutter_tic_tac_toe/provider/offline_game_provider.dart';
+import 'package:flutter_tic_tac_toe/utils/colors.dart';
+import 'package:flutter_tic_tac_toe/widgets/custom_button.dart';
 import 'package:flutter_tic_tac_toe/widgets/offline_tic_tac_toe_board.dart';
 import 'package:provider/provider.dart';
 
@@ -32,12 +34,15 @@ class OfflineGameScreen extends StatelessWidget {
               ),
               // Status Bar to show who's turn or if there's a winner
               _StatusBar(),
-              ElevatedButton(
+              SizedBox(
+                height: size.height * 0.05,
+              ),
+              CustomButton(
+                buttonColor: redColor,
                 onPressed: () {
-                  Provider.of<OfflineGameProvider>(context, listen: false)
-                      .resetGame();
+                  offlineGameProvider.resetGame();
                 },
-                child: const Text('Reset Game'),
+                text: "Reset Game",
               ),
             ],
           ),
@@ -61,7 +66,7 @@ class _StatusBar extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         status,
-        style: const TextStyle(fontSize: 24),
+        style: const TextStyle(fontSize: 34),
       ),
     );
   }
