@@ -19,7 +19,8 @@ class OfflineScoreboard extends StatelessWidget {
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             const Text(
               'Player X', // Fixed name as this is for offline mode
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 30, fontWeight: FontWeight.bold, color: blueColor),
             ),
             Text(
               offlineGameProvider.xScore.toString(), // Player X score
@@ -32,7 +33,8 @@ class OfflineScoreboard extends StatelessWidget {
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             const Text(
               'Player O', // Fixed name as this is for offline mode
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 30, fontWeight: FontWeight.bold, color: blueColor),
             ),
             Text(
               offlineGameProvider.oScore.toString(), // Player O score
