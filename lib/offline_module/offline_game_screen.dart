@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/offline_module/offline_scorebord.dart';
 import 'package:flutter_tic_tac_toe/provider/offline_game_provider.dart';
 import 'package:flutter_tic_tac_toe/utils/colors.dart';
+import 'package:flutter_tic_tac_toe/utils/utils.dart';
 import 'package:flutter_tic_tac_toe/widgets/custom_button.dart';
 import 'package:flutter_tic_tac_toe/widgets/offline_tic_tac_toe_board.dart';
 import 'package:provider/provider.dart';
@@ -35,14 +36,17 @@ class OfflineGameScreen extends StatelessWidget {
               // Status Bar to show who's turn or if there's a winner
               _StatusBar(),
               SizedBox(
-                height: size.height * 0.05,
+                height: size.height * 0.03,
               ),
-              CustomButton(
-                buttonColor: redColor,
-                onPressed: () {
-                  offlineGameProvider.resetGame();
-                },
-                text: "Reset Game",
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                child: CustomButton(
+                  buttonColor: redColor,
+                  onPressed: () {
+                    resetGameDialogBox(context, "Are you sure you want to reset the game?");
+                  },
+                  text: "Reset Game",
+                ),
               ),
             ],
           ),
@@ -55,6 +59,7 @@ class OfflineGameScreen extends StatelessWidget {
 class _StatusBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     final offlineGameProvider = Provider.of<OfflineGameProvider>(context);
     String status = offlineGameProvider.winner.isNotEmpty
         ? (offlineGameProvider.winner == 'Draw'
@@ -63,10 +68,10 @@ class _StatusBar extends StatelessWidget {
         : 'Current Turn: ${offlineGameProvider.currentPlayer}';
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(size.width * 0.02),
       child: Text(
         status,
-        style: const TextStyle(fontSize: 34),
+        style: TextStyle(fontSize: size.width * 0.075),
       ),
     );
   }

@@ -8,6 +8,7 @@ class OfflineScoreboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     OfflineGameProvider offlineGameProvider =
         Provider.of<OfflineGameProvider>(context);
 
@@ -15,30 +16,66 @@ class OfflineScoreboard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.all(30),
+          padding: EdgeInsets.all(size.width * 0.07),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Text(
-              'Player X', // Fixed name as this is for offline mode
-              style: TextStyle(
-                  fontSize: 30, fontWeight: FontWeight.bold, color: blueColor),
-            ),
+            RichText(text: TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Player',
+                  style: TextStyle(
+                  fontSize: size.width * 0.08, fontWeight: FontWeight.bold, color: blueColor),
+                ),
+                TextSpan(
+                  text: ' X',
+  style: TextStyle(
+                  fontSize: size.width * 0.085, fontWeight: FontWeight.bold, color: whiteColor, shadows: const [
+                        Shadow(
+                          color: blueColor
+                              ,
+                          blurRadius: 40,
+                          offset: Offset(0, 0.9),
+                        ),
+                      ], ),
+            
+                ),
+              ]
+            )),
+            SizedBox(height: size.height * 0.015,),
             Text(
               offlineGameProvider.xScore.toString(), // Player X score
-              style: const TextStyle(fontSize: 25, color: whiteColor),
+              style: TextStyle(fontSize: size.width * 0.07, color: whiteColor),
             ),
           ]),
         ),
         Padding(
-          padding: const EdgeInsets.all(30),
+          padding: EdgeInsets.all(size.width * 0.065),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Text(
-              'Player O', // Fixed name as this is for offline mode
-              style: TextStyle(
-                  fontSize: 30, fontWeight: FontWeight.bold, color: blueColor),
-            ),
+            RichText(text: TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Player',
+                  style: TextStyle(
+                  fontSize: size.width * 0.08, fontWeight: FontWeight.bold, color: blueColor,),
+                ),
+                TextSpan(
+                  text: ' O',
+  style: TextStyle(
+                  fontSize: size.width * 0.085, fontWeight: FontWeight.bold, color: whiteColor, shadows: const [
+                        Shadow(
+                          color: redColor
+                              ,
+                          blurRadius: 40,
+                          offset: Offset(0, 0.9),
+                        ),
+                      ],),
+            
+                ),
+              ]
+            )),
+            SizedBox(height: size.height * 0.015,),
             Text(
               offlineGameProvider.oScore.toString(), // Player O score
-              style: const TextStyle(fontSize: 25, color: whiteColor),
+              style: TextStyle(fontSize: size.width * 0.07, color: whiteColor),
             ),
           ]),
         ),
